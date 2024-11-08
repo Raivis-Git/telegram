@@ -1,0 +1,14 @@
+rate-limit:
+  rules:
+    default:
+      requests-per-minute: 30
+      burst-capacity: 10
+    public-api:
+      requests-per-minute: 60
+      burst-capacity: 20
+    admin-api:
+      requests-per-minute: 100
+      burst-capacity: 30
+    auth-api:
+      requests-per-minute: 10
+      burst-capacity: 5
