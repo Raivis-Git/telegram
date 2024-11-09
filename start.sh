@@ -1,3 +1,3 @@
 #!/bin/bash
-cd /bin/projects/rafflebot/rafflebot/
+cd /opt/projects/telegram/telegram/
 /usr/bin/mvn spring-boot:run
