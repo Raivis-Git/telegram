@@ -100,7 +100,15 @@ public class RateLimitInterceptor implements HandlerInterceptor {
     private boolean shouldSkipRateLimit(HttpServletRequest request) {
         // Skip rate limiting for specific paths (e.g., health checks)
         return request.getRequestURI().startsWith("/actuator/") ||
-                request.getRequestURI().startsWith("/swagger-ui/");
+                request.getRequestURI().startsWith("/swagger-ui/") ||
+                isLocalCall(request);
+    }
+
+    private boolean isLocalCall(HttpServletRequest request) {
+        String remoteAddress = request.getRemoteAddr();
+        return "127.0.0.1".equals(remoteAddress)
+                || "0:0:0:0:0:0:0:1".equals(remoteAddress)  // IPv6 localhost
+                || "localhost".equals(request.getServerName());
     }
 
     private String extractUsername(HttpServletRequest request) {
