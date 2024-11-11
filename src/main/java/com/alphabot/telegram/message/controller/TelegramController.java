@@ -28,7 +28,7 @@ public class TelegramController {
         if (messageDTO.getTelegramId() == null)
             return ResponseEntity.badRequest().body("telegramId is null");
 
-        if (StringUtils.hasText(messageDTO.getMessage()))
+        if (!StringUtils.hasText(messageDTO.getMessage()))
             return ResponseEntity.badRequest().body("message is empty");
 
         telegramBot.sendTextMessage(messageDTO.getTelegramId(), messageDTO.getMessage());
